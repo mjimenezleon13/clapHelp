@@ -1,0 +1,92 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #f1feff;
+    font-size: 40px;
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+}
+
+h2 {
+    color: #36c8b4;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+h3 {
+    color: #919191;
+    text-align: center;
+}
+
+p, label {
+    color: #919191;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.button {
+    color: #36c8b4;
+    border: 5px solid #36c8b4;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    min-width: 70%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 13px 0 rgba(0,0,0,0.19);
+}
+
+.button:hover {
+    color: #f1feff;
+    background-color: #36c8b4;
+    border: 5px solid #919191;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+form {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+input {
+    color: #36c8b4;
+    border: 5px solid #36c8b4;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-flex;
+    margin: 10px auto;
+}
+
+img {
+    max-width: 60px;
+    height: auto;
+}
+
+.clapImg {
+    background: transparent;
+    margin: 5px 20px;
+}
+
+.flagDiv {
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.flagDivImg {
+    float: left;
+    max-height: 60px;
+    margin: 15px;
+}
