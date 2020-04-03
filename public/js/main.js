@@ -260,7 +260,7 @@ function getCountryName (countryCode) {
 }
 
 async function getData() {
-  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/getClaps', {
+  await fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/getClaps', {
     method: 'get'
   })
   .then(resp => resp.json())
