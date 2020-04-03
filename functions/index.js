@@ -18,6 +18,7 @@ exports.addClapRT = functions.https.onRequest( async(req, res) => {
       createdAt: Date.now(),
     };
     newClap.set(clap_data);
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
     res.json(clap_data);
   });
 });
@@ -43,6 +44,7 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
         g_count: g_l,
         day_count: day_l
       }
+      res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
       res.json(result);
     });
   })
