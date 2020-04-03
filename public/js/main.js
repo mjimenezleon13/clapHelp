@@ -257,10 +257,7 @@ function getCountryName (countryCode) {
 
 function sendClap() {
   $('#main').hide();
-  // fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClap', {
-  //   method: 'get'
-  // })
-  fetch('/addClap', {
+  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClap', {
     method: 'get'
   })
   .then(response => response.json())
