@@ -275,11 +275,12 @@ async function getData() {
 }
 
 async function sendClap() {
-  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClapRT', {
+  await fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClap', {
     method: 'get'
   })
   .then(response => response.json())
   .then(data => {
+    console.log(data);
     return data;
   })
   .catch(err => {
