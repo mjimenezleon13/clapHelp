@@ -280,8 +280,6 @@ async function sendClap() {
   })
   .then(response => response.json())
   .then(data => {
-
-    // Display the results section
     return data;
   })
   .catch(err => {
@@ -294,7 +292,7 @@ $(document).ready(function() {
   getData().then(function() {
     // Once loaded, hide the loading icon and display the main view
     $('#loader').fadeOut(fade_duration);
-    $('#main').fadeIn(fade_duration);
+    $('#main').delay(fade_duration).fadeIn(fade_duration);
   });
 
   // 2) Hook all buttons to actions and/or views
@@ -302,10 +300,10 @@ $(document).ready(function() {
   $("#clap_button").click(function(e) {
     e.preventDefault();
     $('#main').fadeOut(fade_duration);
-    $('#loader').fadeIn(fade_duration);
+    $('#loader').delay(fade_duration).fadeIn(fade_duration);
     sendClap();
     $('#loader').fadeOut(fade_duration);
-    $('#results').fadeIn(fade_duration);
+    $('#results').delay(fade_duration).fadeIn(fade_duration);
   });
 
   $('.js-link').each(function (i) {
@@ -313,7 +311,7 @@ $(document).ready(function() {
       e.preventDefault();
       $(this).closest('section').fadeOut(fade_duration);
       var href = $(this).attr('href');
-      $(href).fadeIn(fade_duration);
+      $(href).delay(fade_duration).fadeIn(fade_duration);
     })
   });
 
