@@ -1,3 +1,7 @@
+// GLOBALS
+
+var fade_duration = 250;
+
 var isoCountries = {
     'AF' : 'Afghanistan',
     'AX' : 'Aland Islands',
@@ -255,21 +259,30 @@ function getCountryName (countryCode) {
     }
 }
 
-function sendClap() {
-  $('#main').hide();
-  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClap', {
+async function getData() {
+  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/getClaps', {
+    method: 'get'
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    flag_url = "https://www.countryflags.io/" + data['country'] + "/flat/64.png";
+    $('.country_flag').attr("src", flag_url);
+    $('#country_claps').html(data['c_count'] + 1); // Add 1 to consider upcoming clap
+    $('#country_name').html(getCountryName(data['country']));
+    $('#global_claps').html(data['g_count'] + 1); // Add 1 to consider upcoming clap
+    $('#daily_claps').html(data['day_count']);
+  })
+}
+
+async function sendClap() {
+  fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClapRT', {
     method: 'get'
   })
   .then(response => response.json())
   .then(data => {
-    flag_url = "https://www.countryflags.io/" + data['country'] + "/flat/64.png";
-    $('.country_flag').attr("src", flag_url);
-    $('#country_claps').html(data['c_count']);
-    $('#country_name').html(getCountryName(data['country']));
-    $('#global_claps').html(data['g_count']);
 
     // Display the results section
-    $('#results').show();
+    return data;
   })
   .catch(err => {
     console.error(err);
@@ -277,10 +290,33 @@ function sendClap() {
 }
 
 $(document).ready(function() {
+  // 1) Start by retrieving the data from the dataset.
+  getData().then(function() {
+    // Once loaded, hide the loading icon and display the main view
+    $('#loader').fadeOut(fade_duration);
+    $('#main').fadeIn(fade_duration);
+  });
+
+  // 2) Hook all buttons to actions and/or views
+
   $("#clap_button").click(function(e) {
     e.preventDefault();
+    $('#main').fadeOut(fade_duration);
+    $('#loader').fadeIn(fade_duration);
     sendClap();
+    $('#loader').fadeOut(fade_duration);
+    $('#results').fadeIn(fade_duration);
   });
+
+  $('.js-link').each(function (i) {
+    $(this).click(function(e) {
+      e.preventDefault();
+      $(this).closest('section').fadeOut(fade_duration);
+      var href = $(this).attr('href');
+      $(href).fadeIn(fade_duration);
+    })
+  });
+
 });
 
 //PRE-LOADER
