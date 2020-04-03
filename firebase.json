@@ -15,10 +15,6 @@
         "source": "**",
         "destination": "/index.html"
       },
-      {
-        "source": "/addClap",
-        "function": "addClap"
-      }
     ]
   },
   "functions": {
