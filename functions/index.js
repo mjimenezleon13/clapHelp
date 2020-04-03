@@ -39,7 +39,7 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
   country_doc.update({count: increment});
   global_doc.update({count: increment});
 
-  res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+  res.set('Cache-Control', 'public, max-age=150, s-maxage=300');
   res.json({
     "country": country_code,
     "c_count": country_claps + 1,
