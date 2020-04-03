@@ -7,47 +7,45 @@
 
 <body>
   <!-- MAIN -->
-  <section>
+  <section id="main">
     <h3>Thousands of Doctors and Nurses are giving their life today for you and me.</h2>
       <h2>Let's give them a</h2>
-      <a class="button" href="page2.html">
+      <a class="button" id="clap_button">
         CLAP!
-        <img class="clapImg" src="./images/clap.png" />
+        <img class="clapImg" src="./images/clap.svg" />
       </a>
       <p>Today's number of claps: XXXX</p>
     </section>
     <!-- /MAIN -->
 
     <!-- RESULTS -->
-    <section style="display: none;">
+    <section id="results" style="display: none;">
       <h3>Total Number of Claps:</h3>
       <div class="flagDiv">
-        <img class="flagDivImg" src="./images/Flag_of_Colombia.svg"/>
-        <h3>XXX in Colombia</h3>
+        <img class="flagDivImg country_flag" src="./images/Flag_of_Colombia.svg"/>
+        <h3><span id="country_claps"></span> in <span id="country_name"></span></h3>
       </div>
       <div class="flagDiv">
         <img class="flagDivImg" src="./images/world.png"/>
-        <h3>XXX Worldwide</h3>
+        <h3><span id="global_claps"></span> Worldwide</h3>
       </div>
-    </section>
-    <section>
-      <a class="button" href="">Share the CLAP!</a>
-      <a class="button" href="page3.html">More ways to HELP</a>
+      <a class="button">Share the CLAP!</a>
+      <a class="button">More ways to HELP</a>
     </section>
     <!-- /RESULTS -->
 
     <!-- HELP -->
-    <section style="display: none;">
+    <section id="help" style="display: none;">
       <h3>More ways in which you can help!</h3>
-      <a class="button" href="page4.html">I want to send an ecouragement message to the Doctors and Nurses in my area.</a>
-      <a class="button" href="page4.html">I want to donate resources to the cause.</a>
-      <a class="button" href="page4.html">I want to help the ClapHelp team.</a>
-      <a class="button" href="">Share the Clap!</a>
+      <a class="button">I want to send an ecouragement message to the Doctors and Nurses in my area.</a>
+      <a class="button">I want to donate resources to the cause.</a>
+      <a class="button">I want to help the ClapHelp team.</a>
+      <a class="button">Share the Clap!</a>
     </section>
     <!-- /HELP -->
 
     <!-- EMAIL -->
-    <section style="display: none;">
+    <section id="email" style="display: none;">
       <h3>Thank you for wanting to help with XXXX!</h3>
       <form>
         <label for=email>Leave us your email and we'll send you the information on how to help.</label>
@@ -58,6 +56,7 @@
     </section>
     <!-- /EMAIL -->
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/7.13.1/firebase-app.js"></script>
 
@@ -65,8 +64,10 @@
     https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
     <script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.13.1/firebase-functions.js"></script>
 
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
+    <script src="./js/main.js"></script>
   </body>
   </html>
