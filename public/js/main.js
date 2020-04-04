@@ -251,6 +251,9 @@ var isoCountries = {
     'ZZ' : 'Unknown',
 };
 
+
+
+
 function getCountryName (countryCode) {
     if (isoCountries.hasOwnProperty(countryCode)) {
         return isoCountries[countryCode];
@@ -288,6 +291,21 @@ async function sendClap() {
   });
 }
 
+async function sendContact(formData) {
+  var url = 'https://us-central1-claphelp-a1c4e.cloudfunctions.net/addContact?' + $.param(formData);
+  await fetch(url, {
+    method: 'get'
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    return data;
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
 $(document).ready(function() {
   // 1) Start by retrieving the data from the dataset.
   getData().then(function() {
@@ -312,10 +330,22 @@ $(document).ready(function() {
       e.preventDefault();
       $(this).closest('section').fadeOut(fade_duration);
       var href = $(this).attr('href');
+      var value = $(this).data('value');
+      if (value !== undefined) {
+        $('#help-type').val(parseInt(value));
+      }
       $(href).delay(fade_duration).fadeIn(fade_duration);
     })
   });
 
+  $('#contact-form').submit(function(e) {
+    e.preventDefault();
+    var formData = {
+      "type": $('#help-type').val(),
+      "email": $('#email').val(),
+    }
+    sendContact(formData);
+  })
 });
 
 //PRE-LOADER
