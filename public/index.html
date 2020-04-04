@@ -4,6 +4,22 @@
 <head>
   <link href="css/index.css" type="text/css" rel="stylesheet">
   <meta name="viewport" content="width=device-width" />
+  <title>ClapHelp - Show support for those fighting COVID-19</title>
+  <meta name="description" content="Thousands of Doctors and Nurses are giving their life today for you and me. Let's give them a clap!">
+  <meta property="og:title" content="ClapHelp">
+  <meta property="og:description" content="Show support for those fighting COVID-19. Thousands of Doctors and Nurses are giving their life today for you and me. Let's give them a clap!">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="https://claphelp.life">
+  <meta name="twitter:title" content="ClapHelp">
+  <meta property="twitter:description" content="Show support for those fighting COVID-19. Thousands of Doctors and Nurses are giving their life today for you and me. Let's give them a clap!">
+  <meta property="twitter:image" content="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
@@ -30,8 +46,8 @@
         <img class="flagDivImg" src="./images/world.png"/>
         <h3><span id="global_claps"></span> Worldwide</h3>
       </div>
-      <a class="button share-btn" onclick="copyLink()">
-        <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
+      <a class="button">
+        <img class="clapImg icon share-btn" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
       <a class="button js-link" href="#help">More ways to HELP</a>
@@ -42,11 +58,11 @@
 
     <section id="help" style="display: none;">
       <h3>More ways in which you can help!</h3>
-      <a class="button fullWidth js-link" href="#contact">Send an ecouragement message to the Doctors and Nurses in my area.</a>
-      <a class="button fullWidth js-link" href="#contact">Donate resources to the cause.</a>
-      <a class="button fullWidth js-link" href="#contact">Help/Join the ClapHelp team.</a>
+      <a class="button fullWidth js-link" href="#contact" data-value="0">Send an ecouragement message to the Doctors and Nurses in my area.</a>
+      <a class="button fullWidth js-link" href="#contact" data-value="1">Donate resources to the cause.</a>
+      <a class="button fullWidth js-link" href="#contact" data-value="2">Help/Join the ClapHelp team.</a>
       <a style="opacity: 80%; color: #919191;" class="button js-link" href="#contact">
-        <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
+        <img class="clapImg icon share-btn" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
     </section>
@@ -55,11 +71,12 @@
     <!-- EMAIL -->
     <section id="contact" style="display: none;">
       <h3>Thank you for wanting to help!</h3>
-      <form>
-        <label for=email>Leave us your email and we'll send you the information on how to help.</label>
+      <form id="contact-form">
+        <label for="email">Leave us your email and we'll send you the information on how to help.</label>
         <br>
         <input type="email" id="email" name="email" placeholder="example@example.com">
-        <input type="submit" id="submitButton" name="submit" class="button js-link" href="#thanks">
+        <input type="hidden" id="help-type" name="type">
+        <input type="submit" id="submitButton" name="submit" class="button">
       </form>
     </section>
 
@@ -70,7 +87,7 @@
       <h3>Thank You, <br>We will contact you soon!</h3>
       <p>In the meantime, why not share the gratitude?</p>
       <a class="button">
-        <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
+        <img class="clapImg icon share-btn" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
     </section>
