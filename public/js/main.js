@@ -319,9 +319,7 @@ $(document).ready(function() {
   $("#clap_button").click(function(e) {
     e.preventDefault();
     $('#main').fadeOut(fade_duration);
-    $('#loader').delay(fade_duration).fadeIn(fade_duration);
     sendClap();
-    $('#loader').fadeOut(fade_duration);
     $('#results').delay(fade_duration).fadeIn(fade_duration);
   });
 
@@ -340,12 +338,17 @@ $(document).ready(function() {
 
   $('#contact-form').submit(function(e) {
     e.preventDefault();
+    console.log('Sending email');
     var formData = {
       "type": $('#help-type').val(),
       "email": $('#email').val(),
     }
-    sendContact(formData);
-  })
+    sendContact(formData).then(function(res) {
+      console.log(res);
+    });
+    $('#contact').fadeOut(fade_duration);
+    $('#thanks').delay(fade_duration).fadeIn(fade_duration);
+  });
 });
 
 //PRE-LOADER
