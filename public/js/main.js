@@ -306,6 +306,13 @@ async function sendContact(formData) {
   })
 }
 
+function toastText(msg) {
+  $toaster = $('#toaster');
+  $toaster.html(msg);
+  $toaster.fadeIn(fade_duration);
+  $toaster.delay(fade_duration*5).fadeOut(fade_duration);
+}
+
 $(document).ready(function() {
   // 1) Start by retrieving the data from the dataset.
   getData().then(function() {
@@ -338,6 +345,38 @@ $(document).ready(function() {
     })
   });
 
+  $('.share-btn').each(function (i) {
+    $(this).click(function(e) {
+      console.log('Sharing link')
+      e.preventDefault();
+      if (navigator.share) {
+        navigator.share({
+          title: 'ClapHelp',
+          text: 'Show support for those fighting COVID-19',
+          url: 'https://claphelp.life'
+        }).then(() => {
+          console.log('thanks for sharing');
+        }).catch((err) => {
+          console.error(err);
+        });
+      } else {
+        console.log('No share API, copy link');
+        var dummy = document.createElement('input'), text = window.location.href;
+        // dummy.setAttribute('style', 'display:none;');
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        if (document.execCommand('copy')) {
+          // TODO: display a notice indicating the link was copied
+          toastText('Link copied!');
+        } else {
+          console.error('Couldnt copy the link');
+        }
+        document.body.removeChild(dummy);
+      }
+    });
+  });
+
   $('#contact-form').submit(function(e) {
     e.preventDefault();
     var formData = {
@@ -353,37 +392,3 @@ $(window).load(function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");;
 });
-
-//SHARE
-const shareBtn = document.querySelector('.share-btn');
-
-shareBtn.addEventListener('click', () => {
-  if (navigator.share) {
-    navigator.share({
-      title: 'My awesome post!',
-      text: 'This post may or may not contain the answer to the universe',
-      url: 'https://www.youtube.com/watch?v=2oYPk_0iEvU'
-    }).then(() => {
-      console.log('Thanks for sharing!');
-    })
-    .catch(err => {
-      console.log(`Couldn't share because of`, err.message);
-    });
-  } else {
-  }
-});
-
-//COPY LINK
-function copyLink() {
-  /* Get the text field */
-  var copyLink = $(h3);
-
-  /* Select the text field */
-  copyLink.select();
-
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyLink.value);
-};

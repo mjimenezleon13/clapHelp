@@ -30,7 +30,7 @@
         <img class="flagDivImg" src="./images/world.png"/>
         <h3><span id="global_claps"></span> Worldwide</h3>
       </div>
-      <a class="button share-btn" onclick="copyLink()">
+      <a class="button share-btn">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
@@ -45,7 +45,7 @@
       <a class="button fullWidth js-link" href="#contact">Send an ecouragement message to the Doctors and Nurses in my area.</a>
       <a class="button fullWidth js-link" href="#contact">Donate resources to the cause.</a>
       <a class="button fullWidth js-link" href="#contact">Help/Join the ClapHelp team.</a>
-      <a style="opacity: 80%; color: #919191;" class="button js-link" href="#contact">
+      <a style="opacity: 80%; color: #919191;" class="button share-btn">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
@@ -69,7 +69,7 @@
     <section id="thanks" style="display: none;">
       <h3>Thank You, <br>We will contact you soon!</h3>
       <p>In the meantime, why not share the gratitude?</p>
-      <a class="button">
+      <a class="button share-btn">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
@@ -87,6 +87,8 @@
       <p>m@claphelp.life</p>
     </footer>
     <!-- /FOOTER-->
+
+    <div id="toaster" style="display: none"></div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
