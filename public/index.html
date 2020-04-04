@@ -3,6 +3,7 @@
 
 <head>
   <link href="css/index.css" type="text/css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width" />
 </head>
 
 <body>
@@ -44,7 +45,7 @@
       <a class="button fullWidth js-link" href="#contact">Send an ecouragement message to the Doctors and Nurses in my area.</a>
       <a class="button fullWidth js-link" href="#contact">Donate resources to the cause.</a>
       <a class="button fullWidth js-link" href="#contact">Help/Join the ClapHelp team.</a>
-      <a style="opacity: 80%; margin: 30px; color: #919191;" class="button js-link" href="#contact">
+      <a style="opacity: 80%; color: #919191;" class="button js-link" href="#contact">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
         Share the CLAP!
       </a>
@@ -57,13 +58,13 @@
       <form>
         <label for=email>Leave us your email and we'll send you the information on how to help.</label>
         <br>
-        <input type=email id=email name=email>
+        <input type=email id=email name=email placeholder="example@example.com">
         <input type=submit id=submitButton name=submit class=" button js-link" href="#thanks">
       </form>
     </section>
 
     <!-- /EMAIL -->
-    
+
     <!-- THANK YOU-->
     <section id="thanks" style="display: none;">
       <h3>Thank You, <br>We will contact you soon!</h3>
@@ -75,17 +76,17 @@
     </section>
     <!-- /THANK YOU-->
 
-    <!-- FOOTER -->
-    <footer>
-      <p>m@claphelp.life</p>
-    </footer>
-    <!-- /FOOTER-->
-
     <!-- LOADING -->
     <section id="loader">
       <div style="background-color: transparent;" class="se-pre-con"></div>
     </section>
     <!-- /LOADING-->
+
+    <!-- FOOTER -->
+    <footer>
+      <p>m@claphelp.life</p>
+    </footer>
+    <!-- /FOOTER-->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
