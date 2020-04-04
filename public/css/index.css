@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.body {
+body {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,19 @@ section {
     align-items: center;
     margin: auto;
     width: 50%;
+}
+
+@media only screen and (max-width: 480px) {
+    section {
+        margin: auto;
+        width: 90%;
+    }
+    button {
+        width: 100%;
+    }
+    body {
+        background-color: black;
+    }
 }
 
 h2 {
@@ -52,6 +65,10 @@ p, label {
     min-width: 70%;
     text-decoration: none;
     box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 13px 0 rgba(0,0,0,0.19);
+}
+
+.fullWidth {
+    width: 100%;
 }
 
 .button:hover {
