@@ -323,18 +323,3 @@ $(window).load(function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");;
 });
-
-// SHARE
-document.querySelector('.share-button').addEventListener('click', function() {
-  if(navigator.share) {
-    navigator.share({
-      title: 'mobiForge: Web Share API',
-      text: 'Check out this great article about the Web Share API',
-      url: 'https://mobiforge.com/design-development/web-share-api'
-    })
-    .then(() => console.log('Share complete'))
-    .error((error) => console.error('Could not share at this time', error))
-  } else {
-    // fallback
-  }
-});
