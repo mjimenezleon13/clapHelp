@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+.body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 section {
     display: flex;
     flex-direction: column;
@@ -104,3 +112,9 @@ img {
 	background: url("../images/Reload-1s-200px.gif") center no-repeat #fff;
 }
 
+footer p {
+    color: #919191;
+    background: transparent;
+    opacity: 70%;
+    font-size: 0.5rem; 
+}
