@@ -33,10 +33,11 @@ h2 {
   text-align: center;
 }
 
-p, label {
+p, label, p a {
   color: #919191;
   text-align: center;
   font-size: 1.2rem;
+  text-decoration: none;
 }
 
 .button {
@@ -140,6 +141,12 @@ img {
   height: 100%;
   z-index: 9999;
   background: url("../images/Reload-1s-200px.gif") center no-repeat #fff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
 }
 
 footer p {
