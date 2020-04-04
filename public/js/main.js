@@ -353,3 +353,37 @@ $(window).load(function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");;
 });
+
+//SHARE
+const shareBtn = document.querySelector('.share-btn');
+
+shareBtn.addEventListener('click', () => {
+  if (navigator.share) {
+    navigator.share({
+      title: 'My awesome post!',
+      text: 'This post may or may not contain the answer to the universe',
+      url: 'https://www.youtube.com/watch?v=2oYPk_0iEvU'
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(err => {
+      console.log(`Couldn't share because of`, err.message);
+    });
+  } else {
+  }
+});
+
+//COPY LINK
+function copyLink() {
+  /* Get the text field */
+  var copyLink = $(h3);
+
+  /* Select the text field */
+  copyLink.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyLink.value);
+};
