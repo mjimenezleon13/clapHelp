@@ -97,12 +97,15 @@ input {
   text-align: center;
   display: inline-flex;
   margin: 10px auto;
-  width: 75%;
+  width: 80%;
   font-size: 1.4rem;
 }
 
 input[type="email"] {
   background-color: white;
+  color: black;
+  text-align: left;
+  padding: 10px;
 }
 
 input::placeholder {
@@ -124,7 +127,7 @@ input::-ms-input-placeholder {
 
 .icon {
   opacity: 45%;
-  max-width: 3.6vw;
+  max-width: 5vw;
 }
 
 .flagDiv {
@@ -141,9 +144,6 @@ input::-ms-input-placeholder {
 }
 
 /*LOADER*/
-#loader{
-  width: 10vw;
-}
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
