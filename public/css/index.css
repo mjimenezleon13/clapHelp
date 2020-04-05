@@ -124,6 +124,7 @@ input::-ms-input-placeholder {
 
 .icon {
   opacity: 45%;
+  max-width: 3.6vw;
 }
 
 .flagDiv {
