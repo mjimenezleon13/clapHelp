@@ -13,7 +13,6 @@ body {
 }
 
 .header {
-  position: fixed;
   top: 0;
 }
 
@@ -29,10 +28,6 @@ section {
   align-items: center;
   margin: auto;
   width: 60%;
-}
-
-#main, #results, #help, #contact, #thanks {
-  position: absolute;
 }
 
 h3 {
@@ -160,7 +155,6 @@ footer {
   text-align:center;
   width: 60vw;
   height: 10vh;
-  position: fixed;
   bottom: 0px;
 }
 
