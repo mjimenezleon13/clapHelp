@@ -12,6 +12,16 @@ body {
   align-items: center;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+}
+
+.header img {
+  max-height: 15vh;
+  opacity: 45%;
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -19,6 +29,10 @@ section {
   align-items: center;
   margin: auto;
   width: 60%;
+}
+
+#main, #results, #help, #contact, #thanks {
+  position: absolute;
 }
 
 h3 {
@@ -103,11 +117,6 @@ input::-ms-input-placeholder {
   color: rgba(0,0,0,0.1);
 }
 
-img {
-  max-width: 40px;
-  height: auto;
-}
-
 .clapImg {
   background: transparent;
   margin : 0 10px;
@@ -145,10 +154,10 @@ img {
 
 footer {
   text-align:center;
-}
-
-footer img {
-  max-width: 64px;
+  width: 60vw;
+  height: 10vh;
+  position: fixed;
+  bottom: 0px;
 }
 
 footer p {
@@ -159,7 +168,7 @@ footer p {
 }
 
 #toaster {
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.5);
   color: white;
   text-align: center;
   border-radius: 5px;
@@ -168,7 +177,6 @@ footer p {
   z-index: 101;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 30px;
 }
 
 @media (max-width: 449px) {
@@ -176,7 +184,7 @@ footer p {
     width: 80%;
   }
 
-  img {
+  .icon {
     max-width: 40px;
   }
 
@@ -210,7 +218,7 @@ footer p {
     font-size: 2.6vw;
   }
 
-  img {
+  .icon {
     max-width: 3.6vw;
   }
 
