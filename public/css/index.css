@@ -12,6 +12,15 @@ body {
   align-items: center;
 }
 
+.header {
+  top: 0;
+}
+
+.header img {
+  max-height: 15vh;
+  opacity: 45%;
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -83,12 +92,15 @@ input {
   text-align: center;
   display: inline-flex;
   margin: 10px auto;
-  width: 75%;
+  width: 80%;
   font-size: 1.4rem;
 }
 
 input[type="email"] {
   background-color: white;
+  color: black;
+  text-align: left;
+  padding: 10px;
 }
 
 input::placeholder {
@@ -103,11 +115,6 @@ input::-ms-input-placeholder {
   color: rgba(0,0,0,0.1);
 }
 
-img {
-  max-width: 40px;
-  height: auto;
-}
-
 .clapImg {
   background: transparent;
   margin : 0 10px;
@@ -115,6 +122,7 @@ img {
 
 .icon {
   opacity: 45%;
+  max-width: 5vw;
 }
 
 .flagDiv {
@@ -145,10 +153,9 @@ img {
 
 footer {
   text-align:center;
-}
-
-footer img {
-  max-width: 64px;
+  width: 60vw;
+  height: 10vh;
+  bottom: 0px;
 }
 
 footer p {
@@ -159,7 +166,7 @@ footer p {
 }
 
 #toaster {
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.5);
   color: white;
   text-align: center;
   border-radius: 5px;
@@ -168,7 +175,6 @@ footer p {
   z-index: 101;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 30px;
 }
 
 @media (max-width: 449px) {
@@ -176,12 +182,13 @@ footer p {
     width: 80%;
   }
 
-  img {
+  .icon {
     max-width: 40px;
   }
 
   .button {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    padding: 8px 15px;
   }
 
   input {
@@ -210,7 +217,7 @@ footer p {
     font-size: 2.6vw;
   }
 
-  img {
+  .icon {
     max-width: 3.6vw;
   }
 

@@ -23,6 +23,13 @@
 </head>
 
 <body>
+
+  <!-- HEADER -->
+  <section class="header">
+    <img src="images/og_image.png" />
+  </section>
+  <!-- /HEADER-->
+
   <!-- MAIN -->
   <section id="main" style="display: none;">
     <h3>Thousands of Doctors and Nurses are giving their life today for you and me.</h2>
@@ -55,10 +62,9 @@
     <!-- /RESULTS -->
 
     <!-- HELP -->
-
     <section id="help" style="display: none;">
       <h3>More ways in which you can help!</h3>
-      <a class="button fullWidth js-link" href="#contact" data-value="0">Send an ecouragement message to the Doctors and Nurses in my area.</a>
+      <a class="button fullWidth js-link" href="#contact" data-value="0">Send an encouragement message to the Doctors and Nurses in my area.</a>
       <a class="button fullWidth js-link" href="#contact" data-value="1">Donate resources to the cause.</a>
       <a class="button fullWidth js-link" href="#contact" data-value="2">Help/Join the ClapHelp team.</a>
       <a style="opacity: 80%; color: #919191;" class="button share-btn">
@@ -74,12 +80,11 @@
       <form id="contact-form">
         <label for="email">Leave us your email and we'll send you the information on how to help.</label>
         <br>
-        <input type="email" id="email" name="email" placeholder="example@example.com" required>
+        <input type="email" id="email" name="email" placeholder="iloveclapping@ireallydo.com" required>
         <input type="hidden" id="help-type" name="type">
         <input type="submit" id="submitButton" name="submit" class="button">
       </form>
     </section>
-
     <!-- /EMAIL -->
 
     <!-- THANK YOU-->
@@ -93,6 +98,10 @@
     </section>
     <!-- /THANK YOU-->
 
+    <!-- TOASTER -->
+    <div id="toaster" style="display: none"></div>
+    <!-- /TOASTER -->
+
     <!-- LOADING -->
     <section id="loader">
       <div style="background-color: transparent;" class="se-pre-con"></div>
@@ -101,12 +110,9 @@
 
     <!-- FOOTER -->
     <footer>
-      <img src="images/og_image.png" />
       <p><a href="mailto:m@claphelp.life">m@claphelp.life</a></p>
     </footer>
-    <!-- /FOOTER-->
-
-    <div id="toaster" style="display: none"></div>
+    <!-- /FOOTER -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
