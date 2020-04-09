@@ -32,58 +32,62 @@
 
   <!-- MAIN -->
   <section id="main" style="display: none;">
-    <h3>Thousands of Doctors and Nurses are giving their life today for you and me.</h2>
-      <h2>Let's give them a</h2>
+    <h3>Miles de trabajadores de la salúd están dando hoy su vida por tí y por mí.</h2>
+      <h2>Démoles un</h2>
       <a class="button" id="clap_button">
         CLAP!
         <img class="clapImg icon" src="./images/clap.svg" />
       </a>
-      <p>Today's number of claps: <span id="daily_claps" class="counter"></span></p>
+      <p>Total de Claps hoy: <span id="daily_claps" class="counter"></span></p>
     </section>
     <!-- /MAIN -->
 
     <!-- RESULTS -->
     <section id="results" style="display: none;">
-      <h3>Total Number of Claps:</h3>
+      <h3>Número total de Claps:</h3>
       <div class="flagDiv">
         <img class="flagDivImg country_flag" src="./images/Flag_of_Colombia.svg"/>
-        <h3><span id="country_claps" class="counter"></span> in <span id="country_name"></span></h3>
+        <h3><span id="country_claps" class="counter"></span> en <span id="country_name"></span></h3>
       </div>
       <div class="flagDiv">
         <img class="flagDivImg" src="./images/world.png"/>
-        <h3><span id="global_claps" class="counter"></span> Worldwide</h3>
+        <h3><span id="global_claps" class="counter"></span> en el Mundo</h3>
+      </div>
+      <div>
+        <h3>El mensaje del día:</h3>
+        <p>"Gracias a los médicos que hoy están cuidando a mi abuelita." <br> Carolina, Colombia.</p>
       </div>
       <a class="button js-link" href="#help" style="border-color: rgb(61, 61, 190);">Ways to HELP</a>
       <a class="button share-btn" style="opacity: 80%; color: #919191;">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
-        Share the CLAP!
+        Comparte el CLAP!
       </a>
     </section>
     <!-- /RESULTS -->
 
     <!-- HELP -->
     <section id="help" style="display: none;">
-      <h3>More ways in which you can help!</h3>
-      <a class="button fullWidth js-link" href="#message" data-value="0">Send an encouragement message to the Doctors and Nurses in my area.</a>
-      <a class="button fullWidth js-link" href="#donate" data-value="1">Donate resources to the cause.</a>
-      <a class="button fullWidth js-link" href="#contact" data-value="2">Help/Join the ClapHelp team.</a>
+      <h3>¡Hay más formas de ayudar!</h3>
+      <a class="button fullWidth js-link" href="#message" data-value="0">Enviarle un mensaje alentador a los trabajadores de la salúd.</a>
+      <a class="button fullWidth js-link" href="#donate" data-value="1">Donar recursos a la causa.</a>
+      <a class="button fullWidth js-link" href="#contact" data-value="2">Ayúdanos en ClapHelp.</a>
       <a style="opacity: 80%; color: #919191;" class="button share-btn">
         <img class="clapImg icon share-btn" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
-        Share the CLAP!
+         Comparte el CLAP!
       </a>
     </section>
     <!-- /HELP -->
 
     <!-- SEND MESSAGE -->
     <section id="message" style="display: none;">
-      <h3>Thank you for giving support to the medical workers in your area!</h3>
+      <h3>¡Gracias por apoyar a los trabajadores de la salúd en tu área!</h3>
       <form id="contact-form">
-        <label for="writtenMessage">Write your encouragement message:</label>
+        <label for="writtenMessage">Escribe tu mensaje de aliento:</label>
         <textarea type="text" id="writtenMessage" name="writtenMessage" class="textArea" rows="5" cols="20" placeholder="Thank you Message!" required></textarea>
-        <label>Please tell us your:</label>
-        <label for="firstName">Name:</label>
+        <label>Porfavor danos tu:</label>
+        <label for="firstName">Nombre:</label>
         <input type="text" id="firstName" name="firstName" placeholder="Clapper McClapper" class="textInput" required>
-        <label for="country">Country:</label>
+        <label for="country">País:</label>
         <select type="" id="country" name="country" placeholder="Your Country" class="selectInput" required>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
@@ -334,11 +338,11 @@
         <input type="email" id="email" name="email" placeholder="iloveclapping@ireallydo.com" required>
         <div style="display:inline-flex;">
         <input type="checkbox" id="checkboxSendMessage" name="checkboxSendMessage" style="width: 10%;" required>
-        <label for="checkboxSendMessage" style="width: 90%; text-align: left;">I accept my message, name and country to be published and sent to medical workers.</label>
+        <label for="checkboxSendMessage" style="width: 90%; text-align: left;">Acepto que mi mensaje, nombre y país sean publicados.</label>
         </div>
         <div style="display:inline-flex;">
           <input type="checkbox" id="checkboxPriv" name="checkboxPriv" style="width: 10%;" required>
-          <label for="checkboxPriv" style="width: 90%; text-align: left;">I accept the privacy policies.</label>
+          <label for="checkboxPriv" style="width: 90%; text-align: left;">Acepto los términos de privacidad.</label>
         </div>
           <input type="hidden" id="help-type" name="type">
           <input type="submit" id="submitButton" name="submit" class="button">
@@ -348,15 +352,25 @@
 
     <!-- DONATE-->
     <section id="donate" style="display: none;">
-      <h3>Here are some iniciatives in your area!</h3>
+      <h3>Acá hay iniciativas en tu área:</h3>
         <div class="donateCard">
           <div style="width: 30%;">
-            <img class="cardImg icon" style="max-width: 100%; height: auto;" src="../public/images/logo-American-Red-Cross.jpg" />
+            <img class="cardImg icon" style="max-width: 100%; height: auto;" src="../public/images/download (1).png" />
           </div>
           <div class="cardDiv">
-            <h3 class="cardTitle">Initiative Name</h3>
-            <p class="cardText">Short Description</p>
-            <a class="button" id="cardButton" style="border-color: rgb(61, 61, 190);">Go to Page</a>
+            <h3 class="cardTitle">Un aplauso por la vida</h3>
+            <p class="cardText">Iniciativa de la asociación colombiana de cirugía para promover máscaras de protección para profesionales de la salúd.</p>
+            <a class="button" id="cardButton" style="border-color: rgb(61, 61, 190);" href="https://www.unaplausounavida.org/" target="_blank" >Ir a la página</a>
+          </div>
+        </div>
+        <div class="donateCard">
+          <div style="width: 30%;">
+            <img class="cardImg icon" style="max-width: 100%; height: auto;" src="../public/images/5b2d3e1c4f6cc144c23f7fc6_vaki.png" />
+          </div>
+          <div class="cardDiv">
+            <h3 class="cardTitle">Juntos salimos adelante</h3>
+            <p class="cardText">Iniciativa de la empresa de confección Spataro para confeccionar Kits de Vida para profesionales de la salúd.</p>
+            <a class="button" id="cardButton" style="border-color: rgb(61, 61, 190);" href="https://vaki.co/vaki/JuntosSalimosAdelante?fbclid=IwAR0PmYg6RTfFT93z8JFH_LSIc2ID_BrDnmWuNLBjgYM4D803agefnL-Ulw8" target="_blank">Ir a la página</a>
           </div>
         </div>
     </section>
@@ -365,9 +379,9 @@
 
     <!-- EMAIL -->
     <section id="contact" style="display: none;">
-      <h3>Thank you for wanting to help!</h3>
+      <h3>Gracias por querernos ayudar</h3>
       <form id="contact-form">
-        <label for="email">Leave us your email and we'll send you the information on how to help.</label>
+        <label for="email">Dános tu email y te contaremos más de cómo nos puedes ayudar.</label>
         <br>
         <input type="email" id="email" name="email" placeholder="iloveclapping@ireallydo.com" required>
         <input type="hidden" id="help-type" name="type">
@@ -378,11 +392,11 @@
 
     <!-- THANK YOU-->
     <section id="thanks" style="display: none;">
-      <h3>Thank You, <br>We will contact you soon!</h3>
-      <p>In the meantime, why not share the gratitude?</p>
+      <h3>Gracias, <br>Te contactaremos pronto!</h3>
+      <p>Mientras tanto ¿Por qué no compartir la gratitud?</p>
       <a class="button share-btn">
         <img class="clapImg icon" src="./images/78414723-1ba44d80-75e3-11ea-875b-3557a628596e.png" />
-        Share the CLAP!
+        Comparte el CLAP!
       </a>
     </section>
     <!-- /THANK YOU-->
@@ -400,6 +414,9 @@
     <!-- FOOTER -->
     <footer>
       <p><a href="mailto:m@claphelp.life">m@claphelp.life</a></p>
+      <a href="https://github.com/mjimenezleon13/clapHelp" target="_blank">
+        <img class="icon" src="../public/images/_github-512.png"/>
+      </a>
     </footer>
     <!-- /FOOTER -->
 

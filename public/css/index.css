@@ -180,7 +180,7 @@ input [type="checkbox"] {
   display: flex;
   flex-direction: row;
   justify-content: space-around;  
-  margin: auto;
+  margin: 15px auto;
   width: 100%;
   color: #36c8b4;
   border: 5px solid #36c8b4;
@@ -267,6 +267,14 @@ footer p {
 
   input {
     font-size: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardText {
+    font-size: 0.8rem;
   }
 }
 
