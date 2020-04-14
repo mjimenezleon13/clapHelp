@@ -24,7 +24,7 @@ function getHelpType(helpIdx) {
 exports.addClap = functions.https.onRequest( async(req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   return cors(req, res, async () => {
-    const country_code = req.headers["x-appengine-country"];
+    const country_code = req.headers["x-appengine-country"] || 'ZZ';
     var clapsRef = db.ref('claps');
     var newClap = clapsRef.push();
     clap_data = {
@@ -39,7 +39,7 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
 exports.getClaps = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
   return cors(req, res, async() => {
-    const country_code = req.headers["x-appengine-country"];
+    const country_code = req.headers["x-appengine-country"] || 'ZZ';
     var clapsRef = db.ref().child('/claps');
     clapsRef.on('value', snapshot => {
       data = snapshot.val();
