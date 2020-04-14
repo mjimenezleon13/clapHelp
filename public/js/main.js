@@ -272,7 +272,7 @@ function count(object, startNum, time=3000) {
 };
 
 async function getData() {
-  await fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/getClaps', {
+  await fetch('/getClaps', {
     method: 'get'
   })
   .then(resp => resp.json())
@@ -287,7 +287,7 @@ async function getData() {
 }
 
 async function sendClap() {
-  await fetch('https://us-central1-claphelp-a1c4e.cloudfunctions.net/addClap', {
+  await fetch('/addClap', {
     method: 'get'
   })
   .then(response => response.json())
@@ -301,7 +301,7 @@ async function sendClap() {
 }
 
 async function sendContact(formData) {
-  var url = 'https://us-central1-claphelp-a1c4e.cloudfunctions.net/addContact?' + $.param(formData);
+  var url = '/addContact?' + $.param(formData);
   await fetch(url, {
     method: 'get'
   })
