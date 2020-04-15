@@ -1,6 +1,6 @@
 # clapHelp
 <img src="/public/images/og_image.png" width="300px">
-non-profit initiative to help and support those that are actively fighting COVID-19 around the globe.
+Non-profit initiative to help and support those that are actively fighting COVID-19 around the globe.
 This app intends to offer tools to the public, allowing them to show gratitude, support and aid to people around the world that have to put on against the current pandemic.
 
 ## Contributing
