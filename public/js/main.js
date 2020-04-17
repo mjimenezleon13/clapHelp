@@ -337,7 +337,7 @@ $(document).ready(function() {
     e.preventDefault();
     $('#main').fadeOut(fade_duration);
     sendClap();
-    $('#results').delay(fade_duration).fadeIn(fade_duration);
+    $('#dailymessage').delay(fade_duration).fadeIn(fade_duration);
     $('#results').find('.counter').each(function (i) {
       console.log($(this).text());
       count($(this), 0);
