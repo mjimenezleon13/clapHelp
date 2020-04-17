@@ -2,7 +2,7 @@
 // admin.initializeApp = jest.fn();
 
 const test = require('firebase-functions-test')();
-const functions = require('../index');
+const functions = require('functions/index');
 
 jest.mock('cors');
 require('cors');
