@@ -23,23 +23,21 @@ function getHelpType(helpIdx) {
 
 exports.addClap = functions.https.onRequest( async(req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  return cors(req, res, async () => {
-    const country_code = req.headers["x-appengine-country"];
-    var clapsRef = db.ref('claps');
-    var newClap = clapsRef.push();
-    clap_data = {
-      country: country_code,
-      createdAt: Date.now(),
-    };
-    newClap.set(clap_data);
-    res.json(clap_data);
-  });
+  const country_code = req.headers["x-appengine-country"] || 'ZZ';
+  var clapsRef = db.ref('claps');
+  var newClap = clapsRef.push();
+  clap_data = {
+    country: country_code,
+    createdAt: Date.now(),
+  };
+  newClap.set(clap_data);
+  res.status(200).json(clap_data);
 });
 
 exports.getClaps = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
   return cors(req, res, async() => {
-    const country_code = req.headers["x-appengine-country"];
+    const country_code = req.headers["x-appengine-country"] || 'ZZ';
     var clapsRef = db.ref().child('/claps');
     clapsRef.on('value', snapshot => {
       data = snapshot.val();
@@ -58,20 +56,18 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
         g_count: g_l,
         day_count: day_l
       }
-      res.json(result);
+      res.status(200).json(result);
     });
   })
 })
 
 exports.addContact = functions.https.onRequest( async(req, res) => {
-  return cors(req, res, async () => {
-    const query = req.query;
-    result = {
-      type: getHelpType(parseInt(query['type'])),
-      email: query['email'],
-    }
-    var contactsRef = db.ref().child('contacts');
-    var newContact = contactsRef.push(result);
-    res.json(result);
-  })
+  const query = req.query;
+  result = {
+    type: getHelpType(parseInt(query['type'])),
+    email: query['email'],
+  }
+  var contactsRef = db.ref().child('contacts');
+  var newContact = contactsRef.push(result);
+  res.status(200).json(result);
 })
