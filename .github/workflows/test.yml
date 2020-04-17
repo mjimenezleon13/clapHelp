@@ -23,14 +23,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Install dependencies
-      run: |
-        cd functions
-        npm install
-        cd ..
+      run: npm install
 
     - name: Run automatic tests
-      run: |
-        cd functions
-        npm test
-        cd ..
-        
+      run: npm test
