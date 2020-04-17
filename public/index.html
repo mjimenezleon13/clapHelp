@@ -334,11 +334,13 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
+        <label for="email">Región/Ciudad:</label>
+        <input type="text" id="region" name="region" placeholder="ClapLand / ClapCity" required>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="iloveclapping@ireallydo.com" required>
         <div style="display:inline-flex;">
-        <input type="checkbox" id="checkboxSendMessage" name="checkboxSendMessage" style="width: 10%;" required>
-        <label for="checkboxSendMessage" style="width: 90%; text-align: left;">Acepto que mi mensaje, nombre y país sean publicados.</label>
+          <input type="checkbox" id="checkboxSendMessage" name="checkboxSendMessage" style="width: 10%;" required>
+          <label for="checkboxSendMessage" style="width: 90%; text-align: left;">Acepto que mi mensaje, nombre y país sean publicados.</label>
         </div>
         <div style="display:inline-flex;">
           <input type="checkbox" id="checkboxPriv" name="checkboxPriv" style="width: 10%;" required>
@@ -379,7 +381,12 @@
             <a class="button" id="cardButton" style="border-color: rgb(61, 61, 190);" href="https://vaki.co/vaki/JuntosSalimosAdelante?fbclid=IwAR0PmYg6RTfFT93z8JFH_LSIc2ID_BrDnmWuNLBjgYM4D803agefnL-Ulw8" target="_blank">Ir a la página</a>
           </div>
       </div>
-      <p>¿Conoces alguna otra iniciativa? Escríbenos a <a href="mailto:m@claphelp.life">m@claphelp.life</a></p>
+      <form>
+        <br>
+        <label for="link">¿Conoces alguna otra iniciativa? Envíanos el link acá</label>
+        <input type="url" id="link" placeholder="https://www.helplinkherepleaseyourock.life" required/>
+        <input type="submit" id="submitButton" name="submit" class="button">
+      </form>
     </section>
     <!-- /DONATE-->
 
