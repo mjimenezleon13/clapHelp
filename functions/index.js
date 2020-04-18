@@ -239,3 +239,13 @@ async function resetDayCount(){
   }
   return;
 }
+exports.addContact = functions.https.onRequest( async(req, res) => {
+  const query = req.query;
+  result = {
+    type: getHelpType(parseInt(query['type'])),
+    email: query['email'],
+  }
+  var contactsRef = db.ref().child('contacts');
+  var newContact = contactsRef.push(result);
+  res.status(200).json(result);
+})
