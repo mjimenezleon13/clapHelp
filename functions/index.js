@@ -23,7 +23,7 @@ function getHelpType(helpIdx) {
     return "unknown";
   }
 }
-
+ 
 // puts a clap in the database
 exports.addClap = functions.https.onRequest( async(req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
