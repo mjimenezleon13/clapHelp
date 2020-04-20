@@ -23,13 +23,13 @@ function getHelpType(helpIdx) {
     return "unknown";
   }
 }
- 
+
 // puts a clap in the database
 exports.addClap = functions.https.onRequest( async(req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   return cors(req, res, async () => {
     resetDayCount();
-    const country_code = req.headers["x-appengine-country"];
+    const country_code = req.headers["x-appengine-country"] || 'ZZ';
     //const country_code = "ME";
     var countryRef = db.ref('claps/'+country_code);
     var todayRef = db.ref('claps/today');
@@ -63,7 +63,7 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-    
+
     //increases today claps
     await todayRef.once("value", async function(snapshot) {
       if(snapshot.val() != null)
@@ -85,7 +85,7 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
   });
 });
 
-// gets json with total number of claps, country claps and todays's claps 
+// gets json with total number of claps, country claps and todays's claps
 exports.getClaps = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
   return cors(req, res, async() => {
@@ -117,7 +117,7 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-    
+
     //gets today claps
     await todayRef.once("value", function(snapshot) {
       if(snapshot.val() != null)
@@ -125,7 +125,7 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-    
+
     result = {
       country: country_code,
       c_count: countryCount,
@@ -134,7 +134,7 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
       }
     res.json(result);
   });
-}); 
+});
 
 // puts a message in the database given the text(content of the message), remmitent, region and email
 exports.addMessage = functions.https.onRequest( async(req, res) => {
@@ -194,7 +194,7 @@ exports.getCountryFoundations = functions.https.onRequest( async(req,res) => {
         if(snapshot.val() != null)
           result = snapshot.val();
     });
-    
+
     res.json(result);
   });
 });
@@ -209,7 +209,7 @@ exports.getDefaultFoundations = functions.https.onRequest( async(req,res) => {
       if(snapshot.val() != null)
         result = snapshot.val();
     });
-    
+
     res.json(result);
   });
 });
@@ -237,7 +237,7 @@ async function resetDayCount(){
     await todayRef.update({
       count: 0
     });
-    // next update date will be in 24 hours 
+    // next update date will be in 24 hours
     nextUpdate += 24*3600;
   }
   return;
