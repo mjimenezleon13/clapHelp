@@ -7,7 +7,7 @@ admin.initializeApp();
 const db = admin.database();
 const increment = admin.firestore.FieldValue.increment(1);
 
-// keeps trak of when the today's clap counter needs to be reseted
+// keeps trak of when the "today's clap" counter needs to be reseted
 var nextUpdate =Date.now();
 
 var helpOptions = [
@@ -30,19 +30,20 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
   return cors(req, res, async () => {
     resetDayCount();
     const country_code = req.headers["x-appengine-country"];
-    //const country_code = "CO";
+    //const country_code = "ME";
     var countryRef = db.ref('claps/'+country_code);
     var todayRef = db.ref('claps/today');
     var totalRef = db.ref('claps/total');
 
     var returnData;
-    var totalCount = -1;
-    var todayCount = -1;
-    var countryCount = -1;
+    var totalCount = 0;
+    var todayCount = 0;
+    var countryCount = 0;
 
     //increases total claps
     await totalRef.once("value", function(snapshot) {
-      totalCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        totalCount = snapshot.val().count;
       totalCount++;
       totalRef.update({
         count: totalCount
@@ -53,7 +54,8 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
 
     //increases country claps
     await countryRef.once("value", async function(snapshot) {
-      countryCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        countryCount = snapshot.val().count;
       countryCount++;
       countryRef.update({
         count: countryCount
@@ -64,7 +66,8 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
     
     //increases today claps
     await todayRef.once("value", async function(snapshot) {
-      todayCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        todayCount = snapshot.val().count;
       todayCount++;
       todayRef.update({
         count: todayCount
@@ -88,34 +91,37 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
   return cors(req, res, async() => {
     resetDayCount();
     const country_code = req.headers["x-appengine-country"];
-    //const country_code = "CO";
+    //const country_code = "MEX";
 
     var countryRef = db.ref('claps/'+country_code);
     var todayRef = db.ref('claps/today');
     var totalRef = db.ref('claps/total');
 
     var result;
-    var totalCount = -1;
-    var todayCount = -1;
-    var countryCount = -1;
+    var totalCount = 0;
+    var todayCount = 0;
+    var countryCount = 0;
 
     //gets total claps
     await totalRef.once("value", function(snapshot) {
-      totalCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        totalCount = snapshot.val().count;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
 
     //gets country claps
     await countryRef.once("value", function(snapshot) {
-      countryCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        countryCount = snapshot.val().count;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
     
     //gets today claps
     await todayRef.once("value", function(snapshot) {
-      todayCount = snapshot.val().count;
+      if(snapshot.val() != null)
+        todayCount = snapshot.val().count;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
@@ -128,7 +134,7 @@ exports.getClaps = functions.https.onRequest( async(req,res) => {
       }
     res.json(result);
   });
-});
+}); 
 
 // puts a message in the database given the text(content of the message), remmitent, region and email
 exports.addMessage = functions.https.onRequest( async(req, res) => {
@@ -179,17 +185,14 @@ exports.addFoundation = functions.https.onRequest( async(req, res) => {
 exports.getCountryFoundations = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
   return cors(req, res, async() => {
-    resetDayCount();
     const country_code = req.headers["x-appengine-country"];
     //const country_code = "CO";
 
     var foundationsRef = db.ref('foundations/'+country_code);
-
-    var result ;
-
+    var result = {};
     await foundationsRef.once("value", function(snapshot) {
-
-        result = snapshot.val();
+        if(snapshot.val() != null)
+          result = snapshot.val();
     });
     
     res.json(result);
@@ -200,10 +203,10 @@ exports.getCountryFoundations = functions.https.onRequest( async(req,res) => {
 exports.getDefaultFoundations = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
   return cors(req, res, async() => {
-    resetDayCount();
     var foundationsRef = db.ref('foundations/default');
-    var result ;
+    var result ={};
     await foundationsRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
         result = snapshot.val();
     });
     
@@ -222,7 +225,7 @@ exports.addPossibleFundation = functions.https.onRequest( async(req, res) => {
       link: query['link']
     };
     newPossibleF.set(data);
-    res.status(201);
+    res.json(data);
   })
 });
 
@@ -239,6 +242,7 @@ async function resetDayCount(){
   }
   return;
 }
+
 exports.addContact = functions.https.onRequest( async(req, res) => {
   const query = req.query;
   result = {
