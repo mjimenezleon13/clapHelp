@@ -24,6 +24,10 @@
         "function": "addContact"
       },
       {
+        "source": "/addPossibleFoundation",
+        "function": "addPossibleFoundation"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
