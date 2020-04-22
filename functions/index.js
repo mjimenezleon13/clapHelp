@@ -7,6 +7,9 @@ admin.initializeApp();
 const db = admin.database();
 // const increment = admin.firestore.FieldValue.increment(1);
 
+// keeps trak of when the "today's clap" counter needs to be reseted
+var nextUpdate =Date.now();
+
 var helpOptions = [
   "message",
   "donate",
@@ -21,44 +24,224 @@ function getHelpType(helpIdx) {
   }
 }
 
+// puts a clap in the database
 exports.addClap = functions.https.onRequest( async(req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  const country_code = req.headers["x-appengine-country"] || 'ZZ';
-  var clapsRef = db.ref('claps');
-  var newClap = clapsRef.push();
-  clap_data = {
-    country: country_code,
-    createdAt: Date.now(),
-  };
-  newClap.set(clap_data);
-  res.status(200).json(clap_data);
+  return cors(req, res, async () => {
+    resetDayCount();
+    const country_code = req.headers["x-appengine-country"] || 'ZZ';
+    //const country_code = "ME";
+    var countryRef = db.ref('claps/'+country_code);
+    var todayRef = db.ref('claps/today');
+    var totalRef = db.ref('claps/total');
+
+    var returnData;
+    var totalCount = 0;
+    var todayCount = 0;
+    var countryCount = 0;
+
+    //increases total claps
+    await totalRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
+        totalCount = snapshot.val().count;
+      totalCount++;
+      totalRef.update({
+        count: totalCount
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    //increases country claps
+    await countryRef.once("value", async function(snapshot) {
+      if(snapshot.val() != null)
+        countryCount = snapshot.val().count;
+      countryCount++;
+      countryRef.update({
+        count: countryCount
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    //increases today claps
+    await todayRef.once("value", async function(snapshot) {
+      if(snapshot.val() != null)
+        todayCount = snapshot.val().count;
+      todayCount++;
+      todayRef.update({
+        count: todayCount
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    returnData = {
+      countryClaps: countryCount,
+      totalClaps: totalCount,
+      todayClaps: todayCount
+    };
+    res.json(returnData);
+  });
 });
 
+// gets json with total number of claps, country claps and todays's claps
 exports.getClaps = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
-  const country_code = req.headers["x-appengine-country"] || 'ZZ';
-  var clapsRef = db.ref().child('/claps');
-  var data;
-  clapsRef.on('value', snapshot => {
-    data = snapshot.val();
-    arr = []
-    for (var i in data) {
-      arr.push(data[i]);
-    }
-    g_l = arr.length; // Size of all the data
-    c_l = arr.filter(el => el.country === country_code).length; //country specific count
-    // get all items from 24 hours
-    min_timestamp = Date.now() - (24*3600*1000);
-    day_l = arr.filter(el => el.createdAt >= min_timestamp).length;
+  return cors(req, res, async() => {
+    resetDayCount();
+    const country_code = req.headers["x-appengine-country"];
+    //const country_code = "MEX";
+
+    var countryRef = db.ref('claps/'+country_code);
+    var todayRef = db.ref('claps/today');
+    var totalRef = db.ref('claps/total');
+
+    var result;
+    var totalCount = 0;
+    var todayCount = 0;
+    var countryCount = 0;
+
+    //gets total claps
+    await totalRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
+        totalCount = snapshot.val().count;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    //gets country claps
+    await countryRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
+        countryCount = snapshot.val().count;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    //gets today claps
+    await todayRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
+        todayCount = snapshot.val().count;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
     result = {
       country: country_code,
-      c_count: c_l,
-      g_count: g_l,
-      day_count: day_l
-    }
-    res.status(200).json(result);
+      c_count: countryCount,
+      g_count: totalCount,
+      day_count: todayCount
+      }
+    res.json(result);
   });
-})
+});
+
+// puts a message in the database given the text(content of the message), remmitent, region and email
+exports.addMessage = functions.https.onRequest( async(req, res) => {
+  return cors(req, res, async () => {
+    const country_code = req.headers["x-appengine-country"];
+    //const country_code = "CO";
+    const query = req.query;
+    var messageRef = db.ref('messages');
+    var newMessage = messageRef.push();
+    messageData = {
+      text: query['text'],
+      remmitent: query['remmitent'],
+      date: Date.now(),
+      country: country_code,
+      region: query['region'],
+      email: query['email']
+    };
+    newMessage.set(messageData);
+    res.json(messageData);
+  })
+});
+
+// adds a fundation to the database given the title, description, link, photo link and country code
+exports.addFoundation = functions.https.onRequest( async(req, res) => {
+  return cors(req, res, async () => {
+    const query = req.query;
+    const country_code = query['country'];
+    var foundationRef;
+    if(country_code != null){
+      foundationRef = db.ref('foundations/'+country_code);
+    }
+    else{
+      foundationRef= db.ref('foundations/dafault');
+    }
+    var newFoundation = foundationRef.push();
+    data = {
+      title: query['title'],
+      description: query['description'],
+      link: query['link'],
+      photo: query['photo']
+    };
+    newFoundation.set(data);
+    res.json(data);
+  })
+});
+
+// gets json with all foundations under a given country
+exports.getCountryFoundations = functions.https.onRequest( async(req,res) => {
+  res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
+  return cors(req, res, async() => {
+    const country_code = req.headers["x-appengine-country"];
+    //const country_code = "CO";
+
+    var foundationsRef = db.ref('foundations/'+country_code);
+    var result = {};
+    await foundationsRef.once("value", function(snapshot) {
+        if(snapshot.val() != null)
+          result = snapshot.val();
+    });
+
+    res.json(result);
+  });
+});
+
+// gets json with all default foundations
+exports.getDefaultFoundations = functions.https.onRequest( async(req,res) => {
+  res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
+  return cors(req, res, async() => {
+    var foundationsRef = db.ref('foundations/default');
+    var result ={};
+    await foundationsRef.once("value", function(snapshot) {
+      if(snapshot.val() != null)
+        result = snapshot.val();
+    });
+
+    res.json(result);
+  });
+});
+
+// puts a possible foundation given the country code and the link
+exports.addPossibleFundation = functions.https.onRequest( async(req, res) => {
+  return cors(req, res, async () => {
+    const query = req.query;
+    var possibleFRef = db.ref('possible-foundations');
+    var newPossibleF = possibleFRef.push();
+    data = {
+      country: query['country'],
+      link: query['link']
+    };
+    newPossibleF.set(data);
+    res.json(data);
+  })
+});
+
+// checks if today's clap counter needs to be reseted
+async function resetDayCount(){
+  if(Date.now() > nextUpdate){
+    var todayRef = db.ref('claps/today');
+    // reset counter
+    await todayRef.update({
+      count: 0
+    });
+    // next update date will be in 24 hours
+    nextUpdate += 24*3600;
+  }
+  return;
+}
 
 exports.addContact = functions.https.onRequest( async(req, res) => {
   const query = req.query;
