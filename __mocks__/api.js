@@ -1,12 +1,13 @@
 /*********************************************************
- * This module mocks the api responses from the firebase *
- * functions. It generates random requests and responses *
- * that we can use for testing purposes. This allows us  *
- * to see the behavior of our front and api with close to*
- * real life responses from our api. If the functions'   *
- * responses are modified, this too must be adjusted     *
- *********************************************************/
+* This module mocks the api responses from the firebase *
+* functions. It generates random requests and responses *
+* that we can use for testing purposes. This allows us  *
+* to see the behavior of our front and api with close to*
+* real life responses from our api. If the functions'   *
+* responses are modified, this too must be adjusted     *
+*********************************************************/
 
+// const jest = require('jest-mock');
 var iso = require('../public/js/isocountries.json')
 var Chance = require('chance');
 var chance = new Chance();
@@ -36,4 +37,27 @@ module.exports.addContact = function() {
     type: chance.pickone(["message","donate","teamhelp"]),
     email: chance.email()
   }
+}
+
+
+module.exports.getClapsRequest = function(with_country = true) {
+  const req = {};
+  req.method = "GET";
+  req.headers = {};
+  if (with_country) {
+    var codes = Object.keys(iso);
+    req.headers = {
+      "x-appengine-country": codes[chance.natural({max: codes.length-1})],
+    };
+  }
+  return req;
+}
+
+module.exports.getClapsResponse = function() {
+  const res = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.set = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+
+  return res;
 }

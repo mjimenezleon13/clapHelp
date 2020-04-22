@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const db = admin.database();
-const increment = admin.firestore.FieldValue.increment(1);
+// const increment = admin.firestore.FieldValue.increment(1);
 
 var helpOptions = [
   "message",
@@ -36,29 +36,28 @@ exports.addClap = functions.https.onRequest( async(req, res) => {
 
 exports.getClaps = functions.https.onRequest( async(req,res) => {
   res.set('Cache-Control', 'public, max-age=60, s-maxage=150');
-  return cors(req, res, async() => {
-    const country_code = req.headers["x-appengine-country"] || 'ZZ';
-    var clapsRef = db.ref().child('/claps');
-    clapsRef.on('value', snapshot => {
-      data = snapshot.val();
-      arr = []
-      for (var i in data) {
-        arr.push(data[i]);
-      }
-      g_l = arr.length; // Size of all the data
-      c_l = arr.filter(el => el.country === country_code).length; //country specific count
-      // get all items from 24 hours
-      min_timestamp = Date.now() - (24*3600*1000);
-      day_l = arr.filter(el => el.createdAt >= min_timestamp).length;
-      result = {
-        country: country_code,
-        c_count: c_l,
-        g_count: g_l,
-        day_count: day_l
-      }
-      res.status(200).json(result);
-    });
-  })
+  const country_code = req.headers["x-appengine-country"] || 'ZZ';
+  var clapsRef = db.ref().child('/claps');
+  var data;
+  clapsRef.on('value', snapshot => {
+    data = snapshot.val();
+    arr = []
+    for (var i in data) {
+      arr.push(data[i]);
+    }
+    g_l = arr.length; // Size of all the data
+    c_l = arr.filter(el => el.country === country_code).length; //country specific count
+    // get all items from 24 hours
+    min_timestamp = Date.now() - (24*3600*1000);
+    day_l = arr.filter(el => el.createdAt >= min_timestamp).length;
+    result = {
+      country: country_code,
+      c_count: c_l,
+      g_count: g_l,
+      day_count: day_l
+    }
+    res.status(200).json(result);
+  });
 })
 
 exports.addContact = functions.https.onRequest( async(req, res) => {
