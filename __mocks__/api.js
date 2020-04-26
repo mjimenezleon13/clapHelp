@@ -11,6 +11,8 @@
 var iso = require('../public/js/isocountries.json')
 var Chance = require('chance');
 var chance = new Chance();
+const querystring = require('querystring');
+
 
 module.exports.getClaps = function () {
   var codes = Object.keys(iso);
@@ -23,6 +25,7 @@ module.exports.getClaps = function () {
   }
 }
 
+
 module.exports.addClap = function () {
   var codes = Object.keys(iso);
   var code = codes[chance.natural({max: codes.length-1})];
@@ -32,6 +35,7 @@ module.exports.addClap = function () {
   }
 }
 
+
 module.exports.addContact = function() {
   return {
     type: chance.pickone(["message","donate","teamhelp"]),
@@ -40,9 +44,10 @@ module.exports.addContact = function() {
 }
 
 
-module.exports.getClapsRequest = function(with_country = true) {
+module.exports.request = function(query, with_country = true) {
   const req = {};
   req.method = "GET";
+  req.query = querystring.encode(query);
   req.headers = {};
   if (with_country) {
     var codes = Object.keys(iso);
@@ -52,6 +57,7 @@ module.exports.getClapsRequest = function(with_country = true) {
   }
   return req;
 }
+
 
 module.exports.getClapsResponse = function() {
   const res = {};
