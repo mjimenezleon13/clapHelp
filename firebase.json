@@ -24,8 +24,24 @@
         "function": "addContact"
       },
       {
-        "source": "/addPossibleFoundation",
-        "function": "addPossibleFoundation"
+        "source": "/addMessage",
+        "function": "addMessage"
+      },
+      {
+        "source": "addFoundation",
+        "function": "addFoundation"
+      },
+      {
+        "source": "getCountryFoundations",
+        "function": "getCountryFoundations"
+      },
+      {
+        "source": "getDefaultFoundations",
+        "function": "getDefaultFoundations"
+      },
+      {
+        "source": "addPossibleFundation",
+        "function": "addPossibleFundation"
       },
       {
         "source": "**",
