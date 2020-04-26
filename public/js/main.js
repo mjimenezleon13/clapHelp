@@ -86,6 +86,13 @@ async function sendContact(formData) {
   })
 }
 
+async function sendPossibleFoundation(formData) {
+  var url = '/addPossibleFoundation' + $.param(formData);
+  await fetch(url, {
+    method: 'get'
+  });
+};
+
 function toastText(msg) {
   $toaster = $('#toaster');
   console.log(msg);
@@ -179,4 +186,18 @@ function setupContactForm() {
     $('#contact').fadeOut(fade_duration);
     $('#thanks').delay(fade_duration).fadeIn(fade_duration);
   });
-}
+};
+
+function setupPossibleFoundation( ){
+  $('#possible-foundation-form').submit(function(e) {
+    e.preventDefault();
+    console.log('Thank you for the information!');
+    var formData = {
+      "country": $('#country_name').val(),
+      "link": $('#possible-foundation-link').val(),
+    }
+    sendPossibleFoundation(formData).then(function(res) {
+      console.log(res);
+    });
+  })
+};
