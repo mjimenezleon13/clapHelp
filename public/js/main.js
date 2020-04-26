@@ -189,7 +189,7 @@ function setupContactForm() {
 };
 
 function setupPossibleFoundation( ){
-  $('#possible-foundation-form').submit(function(w) {
+  $('#possible-foundation-form').submit(function(e) {
     e.preventDefault();
     console.log('Thank you for the information!');
     var formData = {
