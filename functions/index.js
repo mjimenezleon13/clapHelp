@@ -145,7 +145,7 @@ exports.addMessage = functions.https.onRequest( async(req, res) => {
     var messageRef = db.ref('messages');
     var newMessage = messageRef.push();
     messageData = {
-      text: query['text'],
+      text: query['writtenMessage'],
       remmitent: query['remmitent'],
       date: Date.now(),
       country: country_code,

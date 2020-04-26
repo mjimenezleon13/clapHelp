@@ -86,6 +86,21 @@ async function sendContact(formData) {
   })
 }
 
+async function sendMessage(formData) {
+  var url = '/addMessage' + $.param(formData);
+  await fetch(url, {
+    method: 'get'
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    return data;
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
 function toastText(msg) {
   $toaster = $('#toaster');
   console.log(msg);
@@ -180,3 +195,20 @@ function setupContactForm() {
     $('#thanks').delay(fade_duration).fadeIn(fade_duration);
   });
 }
+
+function setupMessage() {
+  $('message-form').submit(function(e) {
+    e.preventDefault();
+    console.log('Sending Message');
+    var formData = {
+      "writtenMessage": $("#writtenMessage").val,
+      "remmitent": $("#remmitent").val,
+      "region": $("#region ").val,
+      "email": $("#email").val,
+    }
+
+    sendMessage(formData).than(function(res) {
+      console.log(res);
+    })
+  });
+};
