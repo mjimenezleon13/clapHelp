@@ -93,7 +93,7 @@ input {
   display: inline-flex;
   margin: 10px auto;
   width: 80%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 input[type="email"] {
@@ -113,6 +113,44 @@ input::-webkit-input-placeholder {
 
 input::-ms-input-placeholder {
   color: rgba(0,0,0,0.1);
+}
+
+input [type="checkbox"] {
+  color: #36c8b4;
+  border: 5px solid #36c8b4;
+  border-radius: 10px;
+}
+
+.textInput {
+  background-color: white;
+  color: black;
+  text-align: left;
+  padding: 15px;
+}
+
+.textArea {
+  border: 5px solid #36c8b4;
+  border-radius: 10px;
+  display: inline-flex;
+  margin: 10px auto;
+  width: 100%;
+  font-size: 1.1rem;
+  background-color: white;
+  color: black;
+  text-align: left;
+  padding: 15px;
+}
+
+.selectInput {
+  color: black;
+  border: 5px solid #36c8b4;
+  border-radius: 10px;
+  display: inline-flex;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  font-size: 1.1rem;
+  background-color: white;
 }
 
 .clapImg {
@@ -136,6 +174,42 @@ input::-ms-input-placeholder {
   float: left;
   max-height: 60px;
   margin: 15px;
+}
+
+.donateCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;  
+  margin: 15px auto;
+  width: 100%;
+  color: #36c8b4;
+  border: 5px solid #36c8b4;
+  border-radius: 10px;
+  padding: 15px 32px;
+}
+
+.cardTitle {
+  text-align: left;
+  font-size: 1.5rem;
+  margin: 5px 10px;
+}
+
+.cardText {
+  text-align: left;
+  font-size: 1rem;
+  margin: 5px 10px;
+}
+
+.cardDiv {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+#cardButton {
+  font-size: 1.1rem;
+  margin: 10px auto;
+  padding: 10px auto;
 }
 
 /*LOADER*/
@@ -193,6 +267,14 @@ footer p {
 
   input {
     font-size: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardText {
+    font-size: 0.8rem;
   }
 }
 
