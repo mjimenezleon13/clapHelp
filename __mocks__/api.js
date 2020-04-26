@@ -7,7 +7,7 @@
 * responses are modified, this too must be adjusted     *
 *********************************************************/
 
-// const jest = require('jest-mock');
+var jest = require('jest-mock');
 var iso = require('../public/js/isocountries.json')
 var Chance = require('chance');
 var chance = new Chance();
